@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Word Search Maker</title><link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<header><span class="logo">W</span><div><strong>Word Search Maker</strong><small>A little focus. A little discovery.</small></div><span class="private">Free · Private · Ad-free</span></header>
+<main>
+<section class="controls"><p class="eyebrow">MAKE IT YOURS</p><h1>Your words.<br>A new puzzle.</h1><p class="intro">Create something worth searching for.</p>
+<form id="form">
+<label for="words">Word list <span>One word per line</span></label>
+<textarea id="words" rows="9" spellcheck="false">FOREST
+RIVER
+MOUNTAIN
+MEADOW
+OCEAN
+FLOWER
+SUNSHINE
+GARDEN
+WILLOW
+BREEZE</textarea>
+<p class="hint">Letters A–Z only. Spaces and punctuation are removed.</p>
+<div class="fields"><div><label for="shape">Grid shape</label><select id="shape"><option value="square">Square</option><option value="circle">Circle</option><option value="tree">Tree</option><option value="star">Star</option><option value="heart">Heart</option></select></div><div><label for="size">Grid size</label><select id="size"><option value="auto">Automatic</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>40</option></select></div></div>
+<label for="difficulty">Difficulty</label><select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option></select>
+<label for="directions">Word directions</label><select id="directions"><option value="1">Horizontal only</option><option value="2">Horizontal + vertical</option><option value="3" selected>Horizontal + vertical + diagonal</option></select>
+<p class="hint">Easy: forward only. Medium: some reversed words. Hard: all directions can be reversed.</p>
+<button class="primary" type="submit">Generate Puzzle <span>→</span></button>
+</form></section>
+<section class="preview"><div class="toolbar"><div class="tabs" role="group" aria-label="Preview"><button id="puzzleTab" aria-pressed="true">Puzzle</button><button id="answerTab" aria-pressed="false">Answer key</button></div><button id="regenerate">↻ Regenerate</button></div>
+<p id="status" role="status" aria-live="polite"></p>
+<article class="paper"><div class="paper-head"><p class="eyebrow">THE DAILY DISCOVERY</p><h2 id="previewTitle">Word Search</h2><p id="meta"></p></div><canvas id="canvas" aria-label="Generated word search puzzle"></canvas><div class="word-section"><h3>WORDS TO FIND</h3><ul id="wordList"></ul></div></article>
+<div class="exports"><button id="downloadPuzzle">↓ Download Puzzle PNG</button><button id="downloadAnswers">↓ Download Answers PNG</button><button id="printPuzzle">Print Puzzle</button><button id="printAnswers">Print Answers</button></div>
+<p class="footnote">Made in your browser. Your word list stays with you.</p></section>
+</main></body></html>
