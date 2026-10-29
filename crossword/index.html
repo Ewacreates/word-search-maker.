@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple Crossword Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="core.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div><strong>Simple Crossword Generator</strong><span>Create clear, printable crossword worksheets.</span></div>
+    <a href="../index.html">Word Search Generator</a>
+  </header>
+
+  <main>
+    <section id="editor" class="panel" aria-labelledby="editor-title">
+      <div class="step-heading"><span>1</span><div><h1 id="editor-title">Enter your crossword</h1><p>Complete each clue and answer, then choose how the Secret Word should work.</p></div></div>
+
+      <label for="title">Crossword title <small>Optional</small></label>
+      <input id="title" type="text" maxlength="100" autocomplete="off" placeholder="For example: Everyday Places">
+
+      <fieldset>
+        <legend>Crossword mode</legend>
+        <label class="choice"><input type="radio" name="mode" value="traditional" checked><span><strong>Traditional crossword</strong><small>Answers cross horizontally and vertically. Highlighted letters spell the Secret Word.</small></span></label>
+        <label class="choice"><input type="radio" name="mode" value="secret-column"><span><strong>Secret Word column</strong><small>Answers run horizontally and selected letters make one vertical Secret Word.</small></span></label>
+      </fieldset>
+
+      <label for="secret">Secret Word</label>
+      <input id="secret" class="secret-input" type="text" maxlength="40" autocomplete="off" placeholder="Enter the hidden answer">
+      <p class="help">Letters A–Z are used. In Secret Word column mode, each letter must come from a different answer.</p>
+
+      <div class="entries-heading"><div><h2>Questions and answers</h2><p>Add at least two complete pairs.</p></div><button id="add-entry" type="button">Add question</button></div>
+      <div id="entries"></div>
+      <div class="primary-actions">
+        <button id="generate" class="primary" type="button">Generate crossword</button>
+      </div>
+      <p id="editor-status" class="status" role="alert" aria-live="polite"></p>
+    </section>
+
+    <section id="preview" class="panel" aria-labelledby="preview-heading" hidden>
+      <div class="preview-actions no-print">
+        <button id="edit" type="button">Edit questions</button>
+        <button id="regenerate" type="button">Regenerate layout</button>
+        <div class="view-switch" role="group" aria-label="Preview type">
+          <button id="blank-view" type="button" aria-pressed="true">Blank worksheet</button>
+          <button id="answer-view" type="button" aria-pressed="false">Answer key</button>
+        </div>
+      </div>
+      <p id="preview-status" class="status no-print" role="status" aria-live="polite"></p>
+
+      <article id="worksheet" class="worksheet">
+        <header><p class="worksheet-label" id="sheet-label">CROSSWORD WORKSHEET</p><h2 id="preview-heading">Crossword</h2><p id="instructions">Complete the crossword, then copy the numbered letters into the Secret Word boxes.</p></header>
+        <div id="grid-wrap"><div id="grid" class="crossword-grid" aria-label="Crossword grid"></div></div>
+        <section class="secret-section"><h3>Secret Word</h3><div id="secret-boxes" class="secret-boxes"></div></section>
+        <section class="clues"><div><h3>Across</h3><ol id="across-clues"></ol></div><div id="down-group"><h3>Down</h3><ol id="down-clues"></ol></div></section>
+      </article>
+
+      <section class="adjustments no-print" aria-labelledby="adjust-heading">
+        <h2 id="adjust-heading">Adjust Secret Word letters</h2>
+        <p>Choose another matching letter. Changes are accepted only when the Secret Word remains correct.</p>
+        <div id="adjustments"></div>
+        <button id="apply-adjustments" type="button">Apply adjustments</button>
+        <p id="adjust-status" class="status" role="alert" aria-live="polite"></p>
+      </section>
+
+      <section class="print-settings no-print" aria-labelledby="print-heading">
+        <h2 id="print-heading">Print settings</h2>
+        <label for="orientation">Page orientation</label><select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select>
+        <label for="cell-size">Letter square size</label><select id="cell-size"><option value="normal">Normal</option><option value="large">Large print</option><option value="compact">Compact</option></select>
+        <div class="button-row"><button id="print" type="button">Print current sheet</button><button id="pdf" type="button">Download / Save PDF</button></div>
+        <p class="help">Your browser print window opens. Choose “Save as PDF” to download a PDF matching this preview.</p>
+      </section>
+    </section>
+
+    <section class="project-bar no-print" aria-labelledby="project-heading">
+      <div><h2 id="project-heading">Project</h2><p>Projects are also recovered automatically in this browser.</p></div>
+      <button id="save-project" type="button">Save Project</button>
+      <button id="save-new" type="button">Save as New</button>
+      <label class="load-button">Load Project<input id="load-project" type="file" accept="application/json,.json"></label>
+      <p id="project-status" class="status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <template id="entry-template">
+    <fieldset class="entry-row">
+      <legend>Question <span class="entry-number"></span></legend>
+      <div><label>Clue<input class="clue" type="text" maxlength="240" placeholder="Write a clear question or clue"></label></div>
+      <div><label>Answer<input class="answer" type="text" maxlength="50" placeholder="Answer"></label></div>
+      <button class="remove-entry" type="button">Delete</button>
+    </fieldset>
+  </template>
+</body>
+</html>

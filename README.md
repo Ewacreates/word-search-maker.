@@ -2,6 +2,10 @@
 
 A browser-only app using HTML, CSS and vanilla JavaScript. No build, backend, API keys, or dependencies.
 
+## Simple Crossword Generator
+
+The separate crossword tool is available at `crossword/index.html`. It supports traditional intersecting crosswords and horizontal-answer Secret Word column puzzles, printable blank worksheets and answer keys, manual Secret Word letter selection, JSON project files, and browser autosave. The original Word Search Generator remains at the site root.
+
 ## Publish for free with GitHub Pages
 
 1. Sign in at https://github.com and choose New repository.
